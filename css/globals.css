@@ -1,0 +1,61 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", sans-serif;
+  background-color: #000;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+a,
+li,
+ul,
+ol,
+label {
+  color: #fff;
+}
+
+.form-group {
+  position: relative;
+}
+
+.form-group:focus-within .absolute-label {
+  color: #007bff;
+}
+
+.input {
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #555;
+  padding: 13px 10px 10px 10px;
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.3s ease;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.input:focus {
+  border-color: #007bff;
+}
+
+.absolute-label {
+  position: absolute;
+  top: 0;
+  background-color: #333;
+  padding-inline: 5px;
+  left: 10px;
+  transform: translateY(-50%);
+  transition: all 0.3s ease;
+  pointer-events: none;
+  font-size: 14px;
+}
