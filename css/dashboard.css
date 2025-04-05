@@ -63,3 +63,29 @@
   font-weight: 500;
   color: #fff;
 }
+
+.nav-item {
+  font-size: 14px;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px;
+}
+
+.nav-item:hover {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.nav-item.active {
+  color: var(--primary-color);
+  font-weight: 700;
+}
+
+ul {
+  padding-left: 0 !important;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
