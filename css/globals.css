@@ -187,3 +187,21 @@ button.small {
   font-weight: 700;
   margin-top: 20px;
 }
+
+.swal2-title {
+  font-family: "Quicksand", sans-serif;
+  font-weight: 700;
+  color: var(--text-color);
+}
+
+button.swal2-styled {
+  font-family: "Quicksand", sans-serif;
+  font-weight: 700;
+  color: var(--text-color);
+  background-color: var(--primary-bg-color);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}

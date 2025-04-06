@@ -66,7 +66,7 @@ document.addEventListener("readystatechange", () => {
           </ul>
         </nav>
         </div>
-        <button class="primary-button small w-100" type="button">Cerrar sesión</button>
+        <button class="primary-button small w-100" id="log-out-button" type="button">Cerrar sesión</button>
       </div>
     </aside>
     `;
@@ -91,5 +91,25 @@ document.addEventListener("readystatechange", () => {
       contentElements.forEach((el) => mainContent.appendChild(el));
       document.body.appendChild(mainContent);
     }
+
+    document
+      .querySelector("#log-out-button")
+      .addEventListener("click", (event) => {
+        Swal.fire({
+          title: "Cerrar sesión",
+          text: "¿Estás seguro de que quieres cerrar sesión?",
+          icon: "warning",
+          theme: "dark",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Sí, cerrar sesión",
+          cancelButtonText: "Cancelar",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.href = "/index.html";
+          }
+        });
+      });
   }
 });
