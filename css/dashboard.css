@@ -1,13 +1,4 @@
-:root {
-  --primary-bg-color: #1b202a;
-  --primary-color: #ffca08;
-  --secondary-color: #336baa;
-  --text-color: #fff;
-  --input-border-color: #fff;
-  --border-color: #2a3241;
-  --font-family: "Inter", sans-serif;
-}
-
+/* Estilos de la barra lateral - Configuración principal */
 .sidebar {
   background-color: var(--primary-bg-color);
   color: #fff;
@@ -18,17 +9,20 @@
   position: fixed;
 }
 
+/* Contenedor para el logo del dashboard */
 .logo-container {
   height: 100px;
   width: 100%;
 }
 
+/* Estilos de imagen del logo */
 .logo-container img {
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
 
+/* Estilo para encabezados de sección */
 .heading-section-span {
   font-size: 14px;
   font-family: "Quicksand", sans-serif;
@@ -127,6 +121,7 @@ ul {
   text-decoration: none;
 }
 
+/* Estilos de la barra lateral - Configuración adicional */
 .sidebar {
   background-color: var(--primary-bg-color);
   color: #fff;
@@ -141,12 +136,14 @@ ul {
   overflow-y: auto;
 }
 
+/* Estilos del contenido principal */
 .main-content {
   margin-left: 250px; /* Same as the sidebar width */
   padding: 20px;
   min-height: 100vh;
 }
 
+/* Contenedor del contador */
 .counter-container {
   display: flex;
   flex-direction: column;
@@ -157,6 +154,7 @@ ul {
   border-radius: 10px;
 }
 
+/* Título del contador */
 .counter-title {
   font-size: 16px;
   font-family: "Quicksand", sans-serif;
@@ -165,6 +163,7 @@ ul {
   margin: 0;
 }
 
+/* Valor del contador */
 .counter-value {
   font-size: 24px;
   font-family: "Quicksand", sans-serif;

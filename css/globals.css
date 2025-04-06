@@ -1,13 +1,15 @@
+/* Variables globales para colores y estilos de la aplicación */
 :root {
-  --primary-bg-color: #1b202a;
+  --primary-bg-color: #17191c;
   --primary-color: #ffca08;
   --secondary-color: #336baa;
   --text-color: #fff;
-  --input-border-color: #fff;
-  --border-color: #2a3241;
+  --input-border-color: #4d5154;
+  --border-color: #4d5154;
   --font-family: "Inter", sans-serif;
 }
 
+/* Importación de la fuente Quicksand */
 @font-face {
   font-family: "Quicksand";
   src: url("../resources/fonts/Quicksand-VariableFont_wght.woff2")
@@ -17,6 +19,7 @@
   font-display: swap;
 }
 
+/* Importación de la fuente Inter */
 @font-face {
   font-family: "Inter";
   src: url("../resources/fonts/Inter-VariableFont_opsz,wght.woff2")
@@ -26,17 +29,20 @@
   font-display: swap;
 }
 
+/* Reset general de estilos */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* Estilos del cuerpo de la página */
 body {
   font-family: "Inter", sans-serif;
   background-color: var(--primary-bg-color) !important;
 }
 
+/* Estilos para elementos de texto */
 h1,
 h2,
 h3,
@@ -54,18 +60,22 @@ label {
   font-family: "Inter", sans-serif;
 }
 
+/* Estilos para grupos de formularios */
 .form-group {
   position: relative;
 }
 
+/* Efecto al enfocar elementos dentro de un grupo de formulario */
 .form-group:focus-within .absolute-label {
   color: var(--primary-color);
 }
 
+/* Estilos para enlaces */
 a {
   text-decoration: none !important;
 }
 
+/* Estilos para campos de entrada */
 .input {
   background-color: var(--primary-bg-color);
   color: #fff;
@@ -81,6 +91,7 @@ a {
   resize: none;
 }
 
+/* Estilos para el placeholder de los inputs */
 .input::placeholder {
   color: #fff;
   opacity: 0.6;
@@ -89,10 +100,12 @@ a {
   font-size: 14px;
 }
 
+/* Efecto al enfocar los inputs */
 .input:focus {
   border-color: var(--primary-color);
 }
 
+/* Estilos para etiquetas absolutas */
 .absolute-label {
   position: absolute;
   top: 0;
@@ -107,6 +120,7 @@ a {
   font-size: 13px;
 }
 
+/* Estilos para botones primarios */
 .primary-button {
   background-color: var(--primary-color);
   color: var(--primary-bg-color);
@@ -122,21 +136,25 @@ a {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+/* Variante de botón pequeño */
 button.small {
   padding: 10px 15px;
   font-size: 14px;
 }
 
+/* Efecto al enfocar botones primarios */
 .primary-button:focus {
   outline: 2px solid var(--primary-color);
   outline-offset: 2px;
 }
 
+/* Efecto hover para botones primarios */
 .primary-button:hover {
   background-color: #e6b800;
   transform: scale(1.05);
 }
 
+/* Estilos para botones secundarios */
 .secondary-button {
   background-color: var(--secondary-color);
   color: #fff;
@@ -151,16 +169,19 @@ button.small {
   outline: none;
 }
 
+/* Efecto al enfocar botones secundarios */
 .secondary-button:focus {
   outline: 2px solid var(--secondary-color);
   outline-offset: 2px;
 }
 
+/* Efecto hover para botones secundarios */
 .secondary-button:hover {
   background-color: #2a4f8c;
   transform: scale(1.05);
 }
 
+/* Estilos para títulos de sección */
 .section-title {
   color: var(--text-color);
   font-weight: 700;

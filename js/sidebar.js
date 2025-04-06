@@ -3,8 +3,10 @@ document.addEventListener("readystatechange", () => {
     document.readyState === "loading" ||
     document.readyState === "interactive"
   ) {
+    // Obtiene la ruta actual de la página
     const currentPage = window.location.pathname;
 
+    // Diccionario para identificar la página activa
     const pagesDictionary = {
       indexPage: currentPage === "/dashboard/index.html",
       transferOrPayPage:
@@ -13,12 +15,15 @@ document.addEventListener("readystatechange", () => {
         currentPage === "/dashboard/options/pay.html" ||
         currentPage === "/dashboard/options/deposit.html" ||
         currentPage === "/dashboard/options/withdraw.html",
+      transactionsPage: currentPage === "/dashboard/transactions.html",
     };
 
+    // Encuentra la clave de la página activa
     const activePage = Object.keys(pagesDictionary).find(
       (key) => pagesDictionary[key] === true
     );
 
+    // HTML de la barra lateral
     const sidebarHTML = `
     <aside class="sidebar">
       <div class="d-flex h-100 w-100 flex-column align-items-start justify-content-between gap-4">
@@ -55,7 +60,9 @@ document.addEventListener("readystatechange", () => {
                 activePage === "transferOrPayPage" ? "active" : ""
               }" href="/dashboard/options/index.html">Transferir o pagar</a>
             </li>
-            <li><a class="nav-item" href="/dashboard/transactions.html">Transacciones</a></li>
+            <li><a class="nav-item ${
+              activePage === "transactionsPage" ? "active" : ""
+            }" href="/dashboard/transactions.html">Transacciones</a></li>
           </ul>
         </nav>
         </div>
@@ -64,19 +71,19 @@ document.addEventListener("readystatechange", () => {
     </aside>
     `;
 
-    // Create the fragment first
+    // Crea un fragmento de documento a partir del HTML de la barra lateral
     const fragment = document
       .createRange()
       .createContextualFragment(sidebarHTML);
 
-    // Insert at the beginning of the body instead of appending
+    // Inserta la barra lateral al inicio del cuerpo del documento
     document.body.insertBefore(fragment, document.body.firstChild);
 
-    // Adjust main content to account for sidebar (add this if you haven't already)
+    // Ajusta el contenido principal para que tenga en cuenta la barra lateral
     const mainContent =
       document.querySelector(".main-content") || document.createElement("div");
     if (!mainContent.classList.contains("main-content")) {
-      // Wrap existing content that's not the sidebar
+      // Envuelve el contenido existente que no es la barra lateral
       const contentElements = Array.from(document.body.children).filter(
         (el) => !el.classList.contains("sidebar")
       );
