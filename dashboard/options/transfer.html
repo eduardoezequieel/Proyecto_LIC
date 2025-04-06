@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/globals.css" />
+    <link rel="stylesheet" href="/css/dashboard.css" />
+    <link rel="stylesheet" href="/css/options.css" />
+    <link href="/lib/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <script src="/js/sidebar.js"></script>
+    <title>Transferir | Pokémon Bank</title>
+  </head>
+  <body>
+    <div class="main-content">
+      <h1 class="section-title mb-0 mt-0">Transferir</h1>
+      <div>
+        <span>Por favor, complete los campos requeridos. (*)</span>
+        <form class="pt-3 transfer-form">
+          <div class="form-group">
+            <label for="account" class="absolute-label">Cuenta destino</label>
+            <input
+              placeholder="Cuenta destino"
+              class="input"
+              type="text"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="amount" class="absolute-label">Monto</label>
+            <input placeholder="Monto" class="input" type="text" required />
+          </div>
+          <div class="form-group">
+            <label for="amount" class="absolute-label">Descripción</label>
+            <textarea
+              placeholder="Descripción"
+              class="input"
+              type="text"
+            ></textarea>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px">
+            <a
+              href="/dashboard/options/index.html"
+              class="secondary-button small text-center"
+            >
+              Cancelar
+            </a>
+            <button class="primary-button small" type="submit">
+              Confirmar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

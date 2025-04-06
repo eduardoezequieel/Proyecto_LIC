@@ -62,6 +62,10 @@ label {
   color: var(--primary-color);
 }
 
+a {
+  text-decoration: none !important;
+}
+
 .input {
   background-color: var(--primary-bg-color);
   color: #fff;
@@ -74,6 +78,7 @@ label {
   font-weight: 450;
   font-size: 14px;
   transition: all 0.3s ease;
+  resize: none;
 }
 
 .input::placeholder {
@@ -117,6 +122,11 @@ label {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+button.small {
+  padding: 10px 15px;
+  font-size: 14px;
+}
+
 .primary-button:focus {
   outline: 2px solid var(--primary-color);
   outline-offset: 2px;
@@ -151,12 +161,8 @@ label {
   transform: scale(1.05);
 }
 
-.sidebar {
-  background-color: var(--primary-bg-color);
-  color: #fff;
-  padding: 20px;
-  border-right: 1px solid var(--border-color);
-  height: 100vh;
-  width: 250px;
-  position: fixed;
+.section-title {
+  color: var(--text-color);
+  font-weight: 700;
+  margin-top: 20px;
 }
