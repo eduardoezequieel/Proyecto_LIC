@@ -5,11 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/globals.css" />
     <link rel="stylesheet" href="/css/dashboard.css" />
+    <link rel="stylesheet" href="/css/options.css" />
     <link href="/lib/bootstrap/bootstrap.min.css" rel="stylesheet" />
     <script src="/js/sidebar.js"></script>
     <title>Pagar | Pokémon Bank</title>
   </head>
   <body>
-    <div class="main-content"></div>
+    <div class="main-content">
+      <h1 class="section-title mb-0 mt-0">Pagar servicio</h1>
+      <div class="form-container">
+        <span class="align-self-start"
+          >Por favor, complete los campos requeridos. (*)</span
+        >
+        <form class="pt-3 transfer-form w-100 d-flex flex-column gap-3">
+          <div class="form-group">
+            <label for="account" class="absolute-label"
+              >Servicio a pagar *</label
+            >
+            <input
+              placeholder="Servicio a pagar"
+              class="input"
+              type="text"
+              required
+            />
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px">
+            <a
+              href="/dashboard/options/index.html"
+              class="secondary-button small text-center"
+            >
+              Cancelar
+            </a>
+            <button class="primary-button small" type="submit">
+              Confirmar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
   </body>
 </html>

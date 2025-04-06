@@ -13,11 +13,13 @@
   <body>
     <div class="main-content">
       <h1 class="section-title mb-0 mt-0">Transferir</h1>
-      <div>
-        <span>Por favor, complete los campos requeridos. (*)</span>
-        <form class="pt-3 transfer-form">
+      <div class="form-container">
+        <span class="align-self-start"
+          >Por favor, complete los campos requeridos. (*)</span
+        >
+        <form class="pt-3 transfer-form w-100 d-flex flex-column gap-3">
           <div class="form-group">
-            <label for="account" class="absolute-label">Cuenta destino</label>
+            <label for="account" class="absolute-label">Cuenta destino *</label>
             <input
               placeholder="Cuenta destino"
               class="input"
@@ -26,11 +28,11 @@
             />
           </div>
           <div class="form-group">
-            <label for="amount" class="absolute-label">Monto</label>
-            <input placeholder="Monto" class="input" type="text" required />
+            <label for="amount" class="absolute-label">Monto *</label>
+            <input placeholder="Monto" class="input" type="number" required />
           </div>
           <div class="form-group">
-            <label for="amount" class="absolute-label">Descripción</label>
+            <label for="description" class="absolute-label">Descripción</label>
             <textarea
               placeholder="Descripción"
               class="input"
