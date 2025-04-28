@@ -1,12 +1,16 @@
-/* Estilos de la barra lateral - Configuración principal */
+/* Estilos de la barra lateral */
 .sidebar {
   background-color: var(--primary-bg-color);
   color: #fff;
-  padding: 20px;|
+  padding: 20px;
   border-right: 1px solid var(--border-color);
   height: 100vh;
   width: 250px;
   position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  overflow-y: auto;
 }
 
 /* Contenedor para el logo del dashboard */
@@ -132,7 +136,7 @@ ul {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1000;
+  z-index: 999;
   overflow-y: auto;
 }
 
@@ -170,4 +174,97 @@ ul {
   font-weight: 700;
   color: var(--primary-color);
   margin: 0;
+}
+
+.mobile-menu.closed {
+  display: none;
+}
+
+.mobile-menu {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--primary-bg-color);
+  z-index: 1000;
+}
+
+.mobile-navbar {
+  display: none;
+}
+
+.mobile-navbar-button,
+.mobile-menu-close-button {
+  background-color: var(--primary-bg-color);
+  border: 1px solid transparent;
+  color: #fff;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.mobile-navbar-button:hover,
+.mobile-menu-close-button:hover {
+  border: 1px solid var(--primary-color);
+  color: var(--primary-bg-color);
+  text-decoration: none;
+}
+
+.mobile-navbar-button > img,
+.mobile-menu-close-button > img {
+  width: 20px;
+  height: 20px;
+}
+
+.chart-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  border: 1px solid var(--border-color);
+  width: fit-content;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+/* Estilos responsive */
+@media (max-width: 876px) {
+  .mobile-navbar {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: var(--primary-bg-color);
+    border-bottom: 1px solid var(--border-color);
+    color: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+  }
+
+  .chart-container {
+    width: 100%;
+    padding: 10px;
+    margin: 0;
+    border-radius: 0;
+  }
+
+  /* Ocultar sidebar */
+  .sidebar {
+    display: none;
+  }
+
+  /* Desplazar contenido principal a la izquierda */
+  .main-content {
+    margin-left: 0;
+    overflow-x: hidden;
+    margin-top: 20px;
+    padding-top: 65px;
+  }
 }

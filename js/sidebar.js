@@ -25,6 +25,58 @@ document.addEventListener("readystatechange", () => {
 
     // HTML de la barra lateral
     const sidebarHTML = `
+    <div class="mobile-menu closed">
+      <div class="d-flex p-4 justify-content-between">
+        <div class="logo-container" style="width: fit-content;">
+          <img
+            src="/resources/images/pokemon_bank_logo.png"
+            alt="Pokémon Bank Logo"
+            class="logo"
+          />
+        </div>
+        <button type="button" class="mobile-menu-close-button" id="mobile-menu-close-button">
+          <img src="/resources/icons/close.svg" alt="close-icon" />
+        </button>
+      </div>
+      <div class="d-flex flex-column justify-content-center align-items-center gap-2">
+        <span class="heading-section-span">Información del usuario</span>
+        <div class="d-flex align-items-center gap-2">
+          <div class="profile-picture-container">
+            <img src="/resources/icons/user.svg" alt="user-icon" />
+          </div>
+          <div class="d-flex flex-column">
+            <span class="active-user-label">Username</span>
+            <span class="account-number-label">
+              #1234567890
+            </span>
+          </div>
+        </div>
+      </div>
+       <nav class="sidebar-nav d-flex flex-column align-items-center pt-4">
+        <span class="heading-section-span">Módulos disponibles</span>
+        <ul class="d-flex pt-2 flex-column gap-2">
+          <li><a class="nav-item ${
+            activePage === "indexPage" ? "active" : ""
+          }" href="/dashboard/index.html">Inicio</a></li>
+          <li>
+            <a class="nav-item ${
+              activePage === "transferOrPayPage" ? "active" : ""
+            }" href="/dashboard/options/index.html">Transferir o pagar</a>
+          </li>
+          <li><a class="nav-item ${
+            activePage === "transactionsPage" ? "active" : ""
+          }" href="/dashboard/transactions.html">Transacciones</a></li>
+        </ul>
+      </nav>
+      <div class="d-flex flex-column align-items-center gap-4 mt-4" style="width: fit-content; margin: auto;">
+        <button class="primary-button small w-100" id="log-out-button" type="button">Cerrar sesión</button>
+      </div> 
+    </div>
+    <div class="mobile-navbar">
+      <button type="button" class="mobile-navbar-button" id="mobile-navbar-button">
+        <img src="/resources/icons/menu.svg" alt="menu-icon" />
+      </button>
+    </div>
     <aside class="sidebar">
       <div class="d-flex h-100 w-100 flex-column align-items-start justify-content-between gap-4">
         <div class="d-flex w-100 flex-column align-items-start gap-4">
@@ -110,6 +162,24 @@ document.addEventListener("readystatechange", () => {
             window.location.href = "/index.html";
           }
         });
+      });
+
+    document
+      .querySelector("#mobile-navbar-button")
+      .addEventListener("click", (e) => {
+        const mobileMenu = document.querySelector(".mobile-menu");
+
+        mobileMenu.classList.toggle("closed");
+        e.stopPropagation();
+      });
+
+    document
+      .querySelector("#mobile-menu-close-button")
+      .addEventListener("click", (e) => {
+        const mobileMenu = document.querySelector(".mobile-menu");
+
+        mobileMenu.classList.toggle("closed");
+        e.stopPropagation();
       });
   }
 });
