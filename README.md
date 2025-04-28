@@ -10,3 +10,7 @@ Este proyecto fue realizado por:
 ## Indicaciones
 
 Para que las rutas de los recursos de la aplicación funcionen correctamente, se recomienda ejecutar el sitio web usando la extensión Live Server en Visual Studio Code. https://marketplace.visualstudio.com/items/?itemName=ritwickdey.LiveServer
+
+## Repositorio
+
+https://github.com/eduardoezequieel/Proyecto_LIC
