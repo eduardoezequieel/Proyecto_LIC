@@ -1,3 +1,10 @@
+const username = "Ash Ketchum";
+const accountNumber = "0987654321";
+
+document.addEventListener("DOMContentLoaded", () => {
+  updateBalanceCounter();
+});
+
 document.addEventListener("readystatechange", () => {
   if (
     document.readyState === "loading" ||
@@ -45,9 +52,9 @@ document.addEventListener("readystatechange", () => {
             <img src="/resources/icons/user.svg" alt="user-icon" />
           </div>
           <div class="d-flex flex-column">
-            <span class="active-user-label">Username</span>
+            <span class="active-user-label">${username}</span>
             <span class="account-number-label">
-              #1234567890
+              #${accountNumber}
             </span>
           </div>
         </div>
@@ -69,7 +76,7 @@ document.addEventListener("readystatechange", () => {
         </ul>
       </nav>
       <div class="d-flex flex-column align-items-center gap-4 mt-4" style="width: fit-content; margin: auto;">
-        <button class="primary-button small w-100" id="log-out-button" type="button">Cerrar sesión</button>
+        <button class="primary-button small w-100 log-out-button" type="button">Cerrar sesión</button>
       </div> 
     </div>
     <div class="mobile-navbar">
@@ -94,9 +101,9 @@ document.addEventListener("readystatechange", () => {
               <img src="/resources/icons/user.svg" alt="user-icon" />
             </div>
             <div class="d-flex flex-column">
-              <span class="active-user-label">Username</span>
+              <span class="active-user-label">${username}</span>
               <span class="account-number-label">
-                #1234567890
+                #${accountNumber}
               </span>
             </div>
           </div>
@@ -118,7 +125,7 @@ document.addEventListener("readystatechange", () => {
           </ul>
         </nav>
         </div>
-        <button class="primary-button small w-100" id="log-out-button" type="button">Cerrar sesión</button>
+        <button class="primary-button small w-100 log-out-button" type="button">Cerrar sesión</button>
       </div>
     </aside>
     `;
@@ -144,9 +151,8 @@ document.addEventListener("readystatechange", () => {
       document.body.appendChild(mainContent);
     }
 
-    document
-      .querySelector("#log-out-button")
-      .addEventListener("click", (event) => {
+    document.querySelectorAll(".log-out-button").forEach((item) => {
+      item.addEventListener("click", () => {
         Swal.fire({
           title: "Cerrar sesión",
           text: "¿Estás seguro de que quieres cerrar sesión?",
@@ -163,6 +169,7 @@ document.addEventListener("readystatechange", () => {
           }
         });
       });
+    });
 
     document
       .querySelector("#mobile-navbar-button")
