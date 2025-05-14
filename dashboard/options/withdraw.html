@@ -17,6 +17,10 @@
         <span class="align-self-start"
           >Por favor, complete los campos requeridos. (*)</span
         >
+        <div class="counter-container mt-4">
+          <h5 class="counter-title">Monto disponible</h5>
+          <h1 class="counter-value">$0</h1>
+        </div>
         <form class="pt-3 transfer-form w-100 d-flex flex-column gap-3">
           <div class="form-group">
             <label for="account" class="absolute-label"
@@ -24,9 +28,9 @@
             >
             <input
               placeholder="Monto a retirar"
+              id="amountInput"
+              name="amountInput"
               class="input"
-              type="text"
-              required
             />
           </div>
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px">
@@ -45,4 +49,8 @@
     </div>
   </body>
   <script src="/lib/sweetalert/sweetalert2@11.js"></script>
+  <script src="/lib/validatejs/validate.min.js"></script>
+  <script src="/helpers/balanceManagement.js"></script>
+  <script src="/helpers/validators.js"></script>
+  <script src="/js/withdraw.js"></script>
 </html>

@@ -37,17 +37,33 @@ const handleSubmit = () => {
     return;
   }
 
+  const currentBalance =
+    parseFloat(localStorage.getItem("balance")) || initialBalance;
+  const amount = parseFloat(amountValue);
+  if (amount > currentBalance) {
+    Swal.fire({
+      icon: "error",
+      title: "Advertencia",
+      text: "El monto a retirar no puede ser mayor al saldo disponible",
+      theme: "dark",
+      showCancelButton: false,
+      confirmButtonColor: "#3085d6",
+      confirmButtonText: "Aceptar",
+    });
+    return;
+  }
+
   Swal.fire({
     icon: "success",
     title: "Éxito",
-    text: "Depósito realizado con éxito",
+    text: "Retiro realizado con éxito",
     theme: "dark",
     showCancelButton: false,
     confirmButtonColor: "#3085d6",
     confirmButtonText: "Aceptar",
   }).then(() => {
     const amount = parseFloat(amountValue);
-    sumToBalanceOnLocalStorage(amount);
+    subtractFromBalanceOnLocalStorage(amount);
     updateBalanceCounter();
 
     window.location.href = "/dashboard/index.html";

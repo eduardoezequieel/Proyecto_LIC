@@ -1,10 +1,6 @@
 const username = "Ash Ketchum";
 const accountNumber = "0987654321";
 
-document.addEventListener("DOMContentLoaded", () => {
-  updateBalanceCounter();
-});
-
 document.addEventListener("readystatechange", () => {
   if (
     document.readyState === "loading" ||

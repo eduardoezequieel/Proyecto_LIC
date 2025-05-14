@@ -1,4 +1,5 @@
 const initialBalance = 500;
+let transactions = [];
 
 document.addEventListener("DOMContentLoaded", () => {
   // Verifica si el saldo ya está en localStorage
@@ -7,6 +8,12 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("balance", initialBalance);
   }
 });
+
+const addTransaction = (transaction) => {
+  transactions = JSON.parse(localStorage.getItem("transactions")) || [];
+  transactions.push(transaction);
+  localStorage.setItem("transactions", JSON.stringify(transactions));
+};
 
 // Obtiene el saldo actual de localStorage
 const getBalanceFromLocalStorage = () =>
@@ -19,6 +26,31 @@ const sumToBalanceOnLocalStorage = (amount) => {
 
   // Almacena el nuevo saldo en localStorage
   localStorage.setItem("balance", newBalance);
+  // Agrega la transacción al localStorage
+  addTransaction({
+    id: Date.now(),
+    type: "deposit",
+    description: "Depósito de efectivo",
+    amount,
+    date: new Date().toISOString(),
+  });
+};
+
+const subtractFromBalanceOnLocalStorage = (amount) => {
+  const currentBalance = getBalanceFromLocalStorage();
+  const newBalance = currentBalance - amount;
+
+  // Almacena el nuevo saldo en localStorage
+  localStorage.setItem("balance", newBalance);
+
+  // Agrega la transacción al localStorage
+  addTransaction({
+    id: Date.now(),
+    type: "withdraw",
+    description: "Retiro de efectivo",
+    amount,
+    date: new Date().toISOString(),
+  });
 };
 
 // Actualiza el contador de saldo

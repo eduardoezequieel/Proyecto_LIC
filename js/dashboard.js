@@ -1,11 +1,30 @@
 document.addEventListener("DOMContentLoaded", function () {
+  updateBalanceCounter();
+  const transactions = JSON.parse(localStorage.getItem("transactions") || "[]");
+  const deposits = transactions.filter(
+    (transaction) => transaction.type === "deposit"
+  );
+  const depositsTotal = deposits.reduce(
+    (acc, transaction) => acc + transaction.amount,
+    0
+  );
+
+  const withdrawals = transactions.filter(
+    (transaction) => transaction.type === "withdraw"
+  );
+  const withdrawalsTotal = withdrawals.reduce(
+    (acc, transaction) => acc + transaction.amount,
+    0
+  );
+
   // Check if the chart container exists
   const chartContainer = document.getElementById("account-activity-chart");
   if (!chartContainer) return;
 
   // Sample data for a doughnut chart - shows income vs expenses distribution
-  const labels = ["Ingresos", "Egresos"];
-  const data = [12500, 10100];
+  const labels = ["Depositos", "Retiros"];
+
+  const data = [depositsTotal, withdrawalsTotal];
   const backgroundColor = [
     "rgba(255, 202, 8, 0.8)", // Yellow for income
     "rgba(51, 107, 170, 0.8)", // Blue for expenses
