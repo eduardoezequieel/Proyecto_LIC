@@ -17,26 +17,39 @@
         <span class="align-self-start"
           >Por favor, complete los campos requeridos. (*)</span
         >
+        <div class="counter-container mt-4">
+          <h5 class="counter-title">Monto disponible</h5>
+          <h1 class="counter-value">$0</h1>
+        </div>
         <form class="pt-3 transfer-form w-100 d-flex flex-column gap-3">
           <div class="form-group">
             <label for="account" class="absolute-label">Cuenta destino *</label>
             <input
+              name="accountNumber"
               placeholder="Cuenta destino"
               class="input"
               type="text"
-              required
+              maxlength="10"
             />
           </div>
           <div class="form-group">
             <label for="amount" class="absolute-label">Monto *</label>
-            <input placeholder="Monto" class="input" type="number" required />
+            <input
+              id="amountInput"
+              name="amount"
+              placeholder="Monto"
+              class="input"
+              type="text"
+            />
           </div>
           <div class="form-group">
             <label for="description" class="absolute-label">Descripción</label>
             <textarea
               placeholder="Descripción"
               class="input"
+              name="description"
               type="text"
+              maxlength="100"
             ></textarea>
           </div>
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px">
@@ -55,4 +68,8 @@
     </div>
   </body>
   <script src="/lib/sweetalert/sweetalert2@11.js"></script>
+  <script src="/lib/validatejs/validate.min.js"></script>
+  <script src="/helpers/balanceManagement.js"></script>
+  <script src="/helpers/validators.js"></script>
+  <script src="/js/transfer.js"></script>
 </html>

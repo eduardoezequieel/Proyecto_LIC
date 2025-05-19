@@ -36,6 +36,26 @@ const sumToBalanceOnLocalStorage = (amount) => {
   });
 };
 
+const transferFromBalanceOnLocalStorage = (formValues) => {
+  const currentBalance = getBalanceFromLocalStorage();
+  const amount = parseFloat(formValues.amount);
+  const newBalance = currentBalance - amount;
+
+  // Almacena el nuevo saldo en localStorage
+  localStorage.setItem("balance", newBalance);
+  // Agrega la transacción al localStorage
+  addTransaction({
+    id: Date.now(),
+    type: "transfer",
+    description: formValues?.description
+      ? `${formValues.description} - Transferencia a #${formValues.accountNumber}`
+      : `Transferencia a # ${formValues.accountNumber}`,
+    amount,
+    date: new Date().toISOString(),
+  });
+};
+
+// Almacena un nuevo saldo en localStorage
 const subtractFromBalanceOnLocalStorage = (amount) => {
   const currentBalance = getBalanceFromLocalStorage();
   const newBalance = currentBalance - amount;
