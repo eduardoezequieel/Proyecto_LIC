@@ -1,23 +1,32 @@
 const initialBalance = 500;
 let transactions = [];
 
-document.addEventListener("DOMContentLoaded", () => {
-  // Verifica si el saldo ya está en localStorage
-  if (!localStorage.getItem("balance")) {
-    // Si no está, lo inicializa con el saldo inicial
-    localStorage.setItem("balance", initialBalance);
-  }
-});
-
 const addTransaction = (transaction) => {
+  console.log("executed");
   transactions = JSON.parse(localStorage.getItem("transactions")) || [];
   transactions.push(transaction);
   localStorage.setItem("transactions", JSON.stringify(transactions));
 };
 
+(function initializeBalance() {
+  // Verifica si el saldo ya está en localStorage
+  if (!localStorage.getItem("balance")) {
+    // Si no está, lo inicializa con el saldo inicial
+    localStorage.setItem("balance", initialBalance);
+
+    addTransaction({
+      id: Date.now(),
+      type: "deposit",
+      description: "Saldo inicial",
+      amount: initialBalance,
+      date: new Date().toISOString(),
+    });
+  }
+})();
+
 // Obtiene el saldo actual de localStorage
 const getBalanceFromLocalStorage = () =>
-  parseFloat(localStorage.getItem("balance")) || initialBalance;
+  parseFloat(localStorage.getItem("balance")) ?? initialBalance;
 
 // Almacena un nuevo saldo en localStorage
 const sumToBalanceOnLocalStorage = (amount) => {
@@ -49,7 +58,7 @@ const transferFromBalanceOnLocalStorage = (formValues) => {
     type: "transfer",
     description: formValues?.description
       ? `${formValues.description} - Transferencia a #${formValues.accountNumber}`
-      : `Transferencia a # ${formValues.accountNumber}`,
+      : `Transferencia a #${formValues.accountNumber}`,
     amount,
     date: new Date().toISOString(),
   });
@@ -59,6 +68,8 @@ const transferFromBalanceOnLocalStorage = (formValues) => {
 const subtractFromBalanceOnLocalStorage = (amount) => {
   const currentBalance = getBalanceFromLocalStorage();
   const newBalance = currentBalance - amount;
+
+  console.log({ currentBalance, newBalance });
 
   // Almacena el nuevo saldo en localStorage
   localStorage.setItem("balance", newBalance);
@@ -76,7 +87,7 @@ const subtractFromBalanceOnLocalStorage = (amount) => {
 // Actualiza el contador de saldo
 const updateBalanceCounter = () => {
   const currentBalance =
-    parseFloat(localStorage.getItem("balance")) || initialBalance;
+    parseFloat(localStorage.getItem("balance")) ?? initialBalance;
 
   const counterValueLabel = document.querySelector(".counter-value");
   const formattedBalance = new Intl.NumberFormat("en-US", {

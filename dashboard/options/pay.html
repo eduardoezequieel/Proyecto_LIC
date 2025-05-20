@@ -26,7 +26,18 @@
               placeholder="Servicio a pagar"
               class="input"
               type="text"
-              required
+              name="service"
+              id="serviceInput"
+            />
+          </div>
+          <div class="form-group">
+            <label for="amount" class="absolute-label">Monto *</label>
+            <input
+              id="amountInput"
+              name="amount"
+              placeholder="Monto"
+              class="input"
+              type="text"
             />
           </div>
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px">
@@ -36,7 +47,11 @@
             >
               Cancelar
             </a>
-            <button class="primary-button small" type="submit">
+            <button
+              id="submit-button"
+              class="primary-button small"
+              type="submit"
+            >
               Confirmar
             </button>
           </div>
@@ -45,4 +60,5 @@
     </div>
   </body>
   <script src="/lib/sweetalert/sweetalert2@11.js"></script>
+  <script src="/js/pay.js"></script>
 </html>

@@ -38,7 +38,7 @@ const handleSubmit = () => {
   }
 
   const currentBalance =
-    parseFloat(localStorage.getItem("balance")) || initialBalance;
+    parseFloat(localStorage.getItem("balance")) ?? initialBalance;
   const amount = parseFloat(amountValue);
   if (amount > currentBalance) {
     Swal.fire({

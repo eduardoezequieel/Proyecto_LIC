@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const typeDictionary = {
       deposit: "Depósito",
       withdraw: "Retiro",
+      transfer: "Transferencia",
     }[transaction.type];
 
     const formattedAmount = new Intl.NumberFormat("en-US", {
