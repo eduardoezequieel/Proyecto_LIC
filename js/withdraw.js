@@ -56,14 +56,17 @@ const handleSubmit = () => {
   Swal.fire({
     icon: "success",
     title: "Éxito",
-    text: "Retiro realizado con éxito",
+    text: "Retiro realizado con éxito, ¿Desea descargar el comprobante?",
     theme: "dark",
     showCancelButton: false,
+    showDenyButton: true,
     confirmButtonColor: "#3085d6",
-    confirmButtonText: "Aceptar",
-  }).then(() => {
+    denyButtonColor: "#1abc9c",
+    confirmButtonText: "Continuar sin comprobante",
+    denyButtonText: "Descargar comprobante",
+  }).then((result) => {
     const amount = parseFloat(amountValue);
-    subtractFromBalanceOnLocalStorage(amount);
+    subtractFromBalanceOnLocalStorage(amount, result.isDenied);
     updateBalanceCounter();
 
     window.location.href = "/dashboard/index.html";

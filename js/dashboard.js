@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   updateBalanceCounter();
   const transactions = JSON.parse(localStorage.getItem("transactions") || "[]");
-  console.log(transactions);
   const deposits = transactions.filter(
     (transaction) => transaction.type === "deposit"
   );
@@ -26,20 +25,29 @@ document.addEventListener("DOMContentLoaded", function () {
     0
   );
 
+  const payments = transactions.filter(
+    (transaction) => transaction.type === "payment"
+  );
+  const paymentsTotal = payments.reduce(
+    (acc, transaction) => acc + transaction.amount,
+    0
+  );
+
   // Check if the chart container exists
   const chartContainer = document.getElementById("account-activity-chart");
   if (!chartContainer) return;
 
   // Sample data for a doughnut chart - shows income vs expenses distribution
-  const labels = ["Depositos", "Retiros", "Transferencias"];
+  const labels = ["Depositos", "Retiros", "Transferencias", "Servicios"];
 
-  const data = [depositsTotal, withdrawalsTotal, transfersTotal];
+  const data = [depositsTotal, withdrawalsTotal, transfersTotal, paymentsTotal];
   const backgroundColor = [
     "rgba(255, 202, 8, 0.8)", // Yellow for income
     "rgba(51, 107, 170, 0.8)", // Blue for expenses
     "rgba(255, 99, 132, 0.8)", // Red for transfers
+    "rgba(224, 20, 132, 0.8)", // Red for payments
   ];
-  const borderColor = ["#ffca08", "#336baa", "#ff6384"];
+  const borderColor = ["#ffca08", "#336baa", "#ff6384", "#e01484"];
 
   // Create chart context
   const ctx = chartContainer.getContext("2d");

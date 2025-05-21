@@ -3,14 +3,19 @@ const amountInput = document.getElementById("amountInput");
 const form = document.querySelector("form");
 
 const constraints = {
-  accountNumber: {
+  service: {
     presence: {
       allowEmpty: false,
-      message: "^El número de cuenta es requerido",
+      message: "^El servicio es requerido",
     },
     format: {
-      pattern: "^[0-9]+$",
-      message: "^El número de cuenta solo puede contener dígitos",
+      pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ.,\\s]+$",
+      message:
+        "^El servicio solo puede contener letras, números y caracteres especiales como .,",
+    },
+    length: {
+      maximum: 100,
+      message: "^La descripción no puede exceder los 100 caracteres",
     },
   },
   amount: {
@@ -23,17 +28,6 @@ const constraints = {
       message: "^El monto debe ser mayor que cero",
     },
   },
-  description: {
-    format: {
-      pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ.,\\s]+$",
-      message:
-        "^La descripción solo puede contener letras, números y caracteres especiales como .,",
-    },
-    length: {
-      maximum: 100,
-      message: "^La descripción no puede exceder los 100 caracteres",
-    },
-  },
 };
 
 const handleSubmit = () => {
@@ -42,15 +36,6 @@ const handleSubmit = () => {
 
   for (const [key, value] of formData.entries()) {
     formValues[key] = value;
-  }
-
-  // Remove empty description to skip validation
-  if (
-    formValues.description === "" ||
-    formValues.description === null ||
-    formValues.description === undefined
-  ) {
-    delete formValues.description;
   }
 
   const errors = validate(formValues, constraints);
@@ -72,12 +57,12 @@ const handleSubmit = () => {
   const currentBalance =
     parseFloat(localStorage.getItem("balance")) ?? initialBalance;
   const amount = parseFloat(formValues.amount);
-  console.log({ amount, currentBalance });
+
   if (amount > currentBalance) {
     Swal.fire({
       icon: "error",
       title: "Advertencia",
-      text: "El monto a transferir no puede ser mayor al saldo disponible",
+      text: "El monto a no puede ser mayor al saldo disponible",
       theme: "dark",
       showCancelButton: false,
       confirmButtonColor: "#3085d6",
@@ -89,16 +74,22 @@ const handleSubmit = () => {
   Swal.fire({
     icon: "success",
     title: "Éxito",
-    text: "Transferencia realizada con éxito",
+    text: "Servicio pagado con éxito. ¿Desea descargar el comprobante?",
     theme: "dark",
     showCancelButton: false,
+    showDenyButton: true,
     confirmButtonColor: "#3085d6",
-    confirmButtonText: "Aceptar",
-  }).then(() => {
-    transferFromBalanceOnLocalStorage({
-      ...formValues,
-      amount: parseFloat(formValues.amount),
-    });
+    denyButtonColor: "#1abc9c",
+    confirmButtonText: "Continuar sin comprobante",
+    denyButtonText: "Descargar comprobante",
+  }).then((result) => {
+    payServiceFromBalanceOnLocalStorage(
+      {
+        ...formValues,
+        amount: parseFloat(formValues.amount),
+      },
+      result.isDenied
+    );
     updateBalanceCounter();
 
     window.location.href = "/dashboard/index.html";

@@ -72,7 +72,6 @@ const handleSubmit = () => {
   const currentBalance =
     parseFloat(localStorage.getItem("balance")) ?? initialBalance;
   const amount = parseFloat(formValues.amount);
-  console.log({ amount, currentBalance });
   if (amount > currentBalance) {
     Swal.fire({
       icon: "error",
@@ -89,16 +88,22 @@ const handleSubmit = () => {
   Swal.fire({
     icon: "success",
     title: "Éxito",
-    text: "Transferencia realizada con éxito",
+    text: "Transferencia realizada con éxito, ¿Desea descargar el comprobante?",
     theme: "dark",
     showCancelButton: false,
+    showDenyButton: true,
     confirmButtonColor: "#3085d6",
-    confirmButtonText: "Aceptar",
-  }).then(() => {
-    transferFromBalanceOnLocalStorage({
-      ...formValues,
-      amount: parseFloat(formValues.amount),
-    });
+    denyButtonColor: "#1abc9c",
+    confirmButtonText: "Continuar sin comprobante",
+    denyButtonText: "Descargar comprobante",
+  }).then((result) => {
+    transferFromBalanceOnLocalStorage(
+      {
+        ...formValues,
+        amount: parseFloat(formValues.amount),
+      },
+      result.isDenied
+    );
     updateBalanceCounter();
 
     window.location.href = "/dashboard/index.html";

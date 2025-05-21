@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
       deposit: "Depósito",
       withdraw: "Retiro",
       transfer: "Transferencia",
+      payment: "Pago de servicio",
     }[transaction.type];
 
     const formattedAmount = new Intl.NumberFormat("en-US", {

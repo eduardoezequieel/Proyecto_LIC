@@ -2,7 +2,6 @@ const initialBalance = 500;
 let transactions = [];
 
 const addTransaction = (transaction) => {
-  console.log("executed");
   transactions = JSON.parse(localStorage.getItem("transactions")) || [];
   transactions.push(transaction);
   localStorage.setItem("transactions", JSON.stringify(transactions));
@@ -29,31 +28,34 @@ const getBalanceFromLocalStorage = () =>
   parseFloat(localStorage.getItem("balance")) ?? initialBalance;
 
 // Almacena un nuevo saldo en localStorage
-const sumToBalanceOnLocalStorage = (amount) => {
+const sumToBalanceOnLocalStorage = (amount, downloadReceipt) => {
   const currentBalance = getBalanceFromLocalStorage();
   const newBalance = currentBalance + amount;
 
-  // Almacena el nuevo saldo en localStorage
-  localStorage.setItem("balance", newBalance);
-  // Agrega la transacción al localStorage
-  addTransaction({
+  const transaction = {
     id: Date.now(),
     type: "deposit",
     description: "Depósito de efectivo",
     amount,
     date: new Date().toISOString(),
-  });
-};
-
-const transferFromBalanceOnLocalStorage = (formValues) => {
-  const currentBalance = getBalanceFromLocalStorage();
-  const amount = parseFloat(formValues.amount);
-  const newBalance = currentBalance - amount;
+  };
 
   // Almacena el nuevo saldo en localStorage
   localStorage.setItem("balance", newBalance);
   // Agrega la transacción al localStorage
-  addTransaction({
+  addTransaction(transaction);
+
+  if (downloadReceipt) {
+    generateReceipt(transaction);
+  }
+};
+
+const transferFromBalanceOnLocalStorage = (formValues, downloadReceipt) => {
+  const currentBalance = getBalanceFromLocalStorage();
+  const amount = parseFloat(formValues.amount);
+  const newBalance = currentBalance - amount;
+
+  const transaction = {
     id: Date.now(),
     type: "transfer",
     description: formValues?.description
@@ -61,27 +63,64 @@ const transferFromBalanceOnLocalStorage = (formValues) => {
       : `Transferencia a #${formValues.accountNumber}`,
     amount,
     date: new Date().toISOString(),
-  });
-};
-
-// Almacena un nuevo saldo en localStorage
-const subtractFromBalanceOnLocalStorage = (amount) => {
-  const currentBalance = getBalanceFromLocalStorage();
-  const newBalance = currentBalance - amount;
-
-  console.log({ currentBalance, newBalance });
+  };
 
   // Almacena el nuevo saldo en localStorage
   localStorage.setItem("balance", newBalance);
-
   // Agrega la transacción al localStorage
-  addTransaction({
+  addTransaction(transaction);
+
+  if (downloadReceipt) {
+    generateReceipt(transaction);
+  }
+};
+
+// Almacena un nuevo saldo en localStorage
+const payServiceFromBalanceOnLocalStorage = (formValues, downloadReceipt) => {
+  const currentBalance = getBalanceFromLocalStorage();
+  const amount = parseFloat(formValues.amount);
+  const newBalance = currentBalance - amount;
+
+  const transaction = {
+    id: Date.now(),
+    type: "payment",
+    description: formValues.service,
+    amount,
+    date: new Date().toISOString(),
+  };
+
+  // Almacena el nuevo saldo en localStorage
+  localStorage.setItem("balance", newBalance);
+  // Agrega la transacción al localStorage
+  addTransaction(transaction);
+
+  if (downloadReceipt) {
+    generateReceipt(transaction);
+  }
+};
+
+// Almacena un nuevo saldo en localStorage
+const subtractFromBalanceOnLocalStorage = (amount, downloadReceipt) => {
+  const currentBalance = getBalanceFromLocalStorage();
+  const newBalance = currentBalance - amount;
+
+  const transaction = {
     id: Date.now(),
     type: "withdraw",
     description: "Retiro de efectivo",
     amount,
     date: new Date().toISOString(),
-  });
+  };
+
+  // Almacena el nuevo saldo en localStorage
+  localStorage.setItem("balance", newBalance);
+
+  // Agrega la transacción al localStorage
+  addTransaction(transaction);
+
+  if (downloadReceipt) {
+    generateReceipt(transaction);
+  }
 };
 
 // Actualiza el contador de saldo
