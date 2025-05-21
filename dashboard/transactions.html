@@ -24,6 +24,7 @@
             <th scope="col">Descripción</th>
             <th scope="col">Monto</th>
             <th scope="col">Fecha</th>
+            <th scope="col">Acciones</th>
           </tr>
         </thead>
         <tbody id="transactions-table"></tbody>
@@ -31,5 +32,8 @@
     </div>
   </body>
   <script src="/lib/sweetalert/sweetalert2@11.js"></script>
+  <script src="/lib/validatejs/validate.min.js"></script>
+  <script src="/lib/jspdf/jspdf.umd.min.js"></script>
+  <script src="/helpers/generateReceipt.js"></script>
   <script src="/js/transactions.js"></script>
 </html>
