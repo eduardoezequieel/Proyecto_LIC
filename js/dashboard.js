@@ -1,3 +1,11 @@
+window.addEventListener("resize", function () {
+  const chartContainer = document.getElementById("account-activity-chart");
+  const chart = Chart.getChart(chartContainer);
+  if (chart) {
+    chart.resize();
+  }
+});
+
 document.addEventListener("DOMContentLoaded", function () {
   updateBalanceCounter();
   const transactions = JSON.parse(localStorage.getItem("transactions") || "[]");
@@ -71,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function () {
       ],
     },
     options: {
-      responsive: true,
+      responsive: false,
       maintainAspectRatio: true,
       plugins: {
         legend: {
